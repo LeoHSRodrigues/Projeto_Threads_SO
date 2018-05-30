@@ -21,7 +21,7 @@ void acao_a (int *VP, int *VI);
 void acao_b (int *VP, int *VI);
 void acao_c (int *VP);
 void efetividade_acao(int v1, int vm);
-void *funcao_thread1 (void *);
+void *funcao_thread1 ();
 
 
 int main(int argc, char const *argv[])
@@ -185,7 +185,7 @@ void efetividade_acao(int v1, int vm)
 		sleep(1);
 	}
 }
-void *funcao_thread1 (void *parametro)
+void *funcao_thread1 ()
 {
 PlaySound("som.wav", NULL, SND_FILENAME);
 }
