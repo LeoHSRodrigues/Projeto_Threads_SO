@@ -24,11 +24,12 @@ void efetividade_acao(int v1, int vm);
 void *funcao_thread1 (void *);
 
 
+
 int main(int argc, char const *argv[])
 {
 	pthread_t thread1;
 	pthread_create(&thread1, NULL, funcao_thread1, NULL);
-
+	
 	char nome[20];
 	struct inimigo inimigo01;
 	struct inimigo inimigo02;
@@ -57,7 +58,7 @@ int main(int argc, char const *argv[])
 
 	setlocale(LC_ALL, "Portuguese");
 	srand(time(NULL));
-	printf("Digite o seu nome, jovem feiticeiro:\t");
+	printf("Digite o seu nome, jovem feiticeiro!\t");
 	setbuf (stdin, NULL);
 	scanf("%[^\n]", nome);
 	combate(&inimigo01, nome);
@@ -116,13 +117,15 @@ void acao_a (int *VP, int *VI, int *AM)
 	efetividade_acao(aux, valor_max);
 	printf("você tirou %d pontos de vida do inimigo\n", aux);
 	sleep(1);
-
-	printf("Agora é a vez do inimigo\n");
-	sleep(1);
-    *VP = *VP - auxII;
-    efetividade_acao(auxII, *AM);
-    printf("O inimigo tirou %d pontos de vida de você\n", auxII);
-    sleep(1);
+	if (*VP > 0 && *VI > 0)
+	{
+		printf("Agora é a vez do inimigo\n");
+		sleep(1);
+    	*VP = *VP - auxII;
+    	efetividade_acao(auxII, *AM);
+    	printf("O inimigo tirou %d pontos de vida de você\n", auxII);
+    	sleep(1);
+    }
 
 }
 void acao_b (int *VP, int *VI, int *MM)
@@ -134,12 +137,15 @@ void acao_b (int *VP, int *VI, int *MM)
 	efetividade_acao(aux, valor_max);
 	printf("você tirou %d pontos de vida do inimigo\n", aux);
 	sleep(1);
-	printf("Agora é a vez do inimigo\n");
-	sleep(1);
-	efetividade_acao(auxII, *MM);
-    *VP = *VP - auxII;
-    printf("O inimigo tirou %d pontos de vida de você\n", auxII);
-    sleep(1);
+	if (*VP > 0 && *VI > 0)
+	{
+		printf("Agora é a vez do inimigo\n");
+		sleep(1);
+		efetividade_acao(auxII, *MM);
+    	*VP = *VP - auxII;
+    	printf("O inimigo tirou %d pontos de vida de você\n", auxII);
+    	sleep(1);
+	}
 
 }
 void acao_c (int *VP)
