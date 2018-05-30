@@ -112,39 +112,39 @@ void acao_a (int *VP, int *VI, int *AM)
 {
 	int valor_max = 55;
 	int aux = 10 + (rand() % 46);
-	int auxII = 10 + (rand() % (*AM - 9));
 	*VI = *VI - aux;
 	efetividade_acao(aux, valor_max);
 	printf("você tirou %d pontos de vida do inimigo\n", aux);
 	sleep(1);
-	if (*VP > 0 && *VI > 0)
+	if (*VI > 0)
 	{
+		int auxII = 10 + (rand() % (*AM - 9));
 		printf("Agora é a vez do inimigo\n");
 		sleep(1);
-    	*VP = *VP - auxII;
-    	efetividade_acao(auxII, *AM);
-    	printf("O inimigo tirou %d pontos de vida de você\n", auxII);
-    	sleep(1);
-    }
+    		*VP = *VP - auxII;
+    		efetividade_acao(auxII, *AM);
+    		printf("O inimigo tirou %d pontos de vida de você\n", auxII);
+    		sleep(1);
+        }
 
 }
 void acao_b (int *VP, int *VI, int *MM)
 {
 	int valor_max = 70;
 	int aux = rand() % 76;
-	int auxII = (rand() % (*MM + 1));
 	*VI = *VI - aux;
 	efetividade_acao(aux, valor_max);
 	printf("você tirou %d pontos de vida do inimigo\n", aux);
 	sleep(1);
-	if (*VP > 0 && *VI > 0)
+	if (*VI > 0)
 	{
+		int auxII = (rand() % (*MM + 1));
 		printf("Agora é a vez do inimigo\n");
 		sleep(1);
 		efetividade_acao(auxII, *MM);
-    	*VP = *VP - auxII;
-    	printf("O inimigo tirou %d pontos de vida de você\n", auxII);
-    	sleep(1);
+    		*VP = *VP - auxII;
+    		printf("O inimigo tirou %d pontos de vida de você\n", auxII);
+    		sleep(1);
 	}
 
 }
